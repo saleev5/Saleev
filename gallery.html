@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Рисунки — Kirill</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        .gallery-page {
+            padding: 90px 8%;
+            min-height: 80vh;
+        }
+
+        .gallery-back {
+            color: var(--accent);
+            font-size: 12px;
+        }
+
+        .gallery-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(50px, 8vw, 90px);
+            letter-spacing: -5px;
+            margin-top: 35px;
+        }
+
+        .gallery-description {
+            color: var(--muted);
+            margin-top: 15px;
+            line-height: 1.8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 65px;
+        }
+
+        .art-item {
+            cursor: pointer;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .art-item img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .art-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .art-caption {
+            padding: 18px;
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .art-caption span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 7px;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.94);
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 35px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 700px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-page {
+                padding: 60px 6%;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="../index.html" class="logo">K<span>.</span></a>
+
+        <nav class="navigation">
+            <a href="../index.html">Главная</a>
+            <a href="../index.html#games">Игры</a>
+            <a href="gallery.html">Рисунки</a>
+        </nav>
+    </header>
+
+    <main class="gallery-page">
+
+        <a href="../index.html" class="gallery-back">
+            ← Вернуться на главную
+        </a>
+
+        <h1 class="gallery-title">
+            Мои рисунки<span style="color:var(--accent)">.</span>
+        </h1>
+
+        <p class="gallery-description">
+            Цифровое искусство, пиксель-арт,
+            эксперименты и визуальные идеи.
+        </p>
+
+        <div class="gallery-grid">
+
+            <div class="art-item">
+                <img src="../images/drawing-01.jpg"
+                     alt="Рисунок 1">
+                <div class="art-caption">
+                    Работа №1
+                    <span>DIGITAL ART</span>
+                </div>
+            </div>
+
+            <div class="art-item">
+                <img src="../images/drawing-02.jpg"
+                     alt="Рисунок 2">
+                <div class="art-caption">
+                    Работа №2
+                    <span>PIXEL ART</span>
+                </div>
+            </div>
+
+            <div class="art-item">
+                <img src="../images/drawing-03.jpg"
+                     alt="Рисунок 3">
+                <div class="art-caption">
+                    Работа №3
+                    <span>ILLUSTRATION</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="closeLightbox">
+            ×
+        </button>
+        <img id="lightboxImage" src="" alt="Увеличенный рисунок">
+    </div>
+
+    <script>
+        const items = document.querySelectorAll(".art-item");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        const closeButton = document.getElementById("closeLightbox");
+
+        items.forEach(item => {
+            item.addEventListener("click", () => {
+                const image = item.querySelector("img");
+                lightboxImage.src = image.src;
+                lightbox.classList.add("active");
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove("active");
+        }
+
+        closeButton.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+</html>
