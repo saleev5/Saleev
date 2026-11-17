@@ -1,2 +1,0 @@
-# Saleev
-My creative portfolio
