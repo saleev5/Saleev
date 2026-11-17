@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Творческое портфолио Кирилла — игры, 3D, рисунки и эксперименты.">
+    <title>Кирилл — творческое портфолио</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #10110f;
+            --surface: #181a17;
+            --surface-light: #20231e;
+            --text: #f1f1e9;
+            --muted: #92968b;
+            --accent: #c4ed8a;
+            --border: rgba(255,255,255,0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+
+        header {
+            height: 84px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 23px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-contact {
+            padding: 11px 18px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--text) !important;
+        }
+
+        .menu-button {
+            display: none;
+            background: none;
+            color: var(--text);
+            border: 0;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 50px;
+            padding: 90px 0;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 14px var(--accent);
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(52px, 7vw, 88px);
+            line-height: .99;
+            letter-spacing: -5px;
+            font-weight: 600;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .hero-description {
+            max-width: 450px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-top: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            margin-top: 36px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 23px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: #171b12;
+        }
+
+        .button-primary:hover {
+            background: #d7ff9e;
+            transform: translateY(-3px);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .button-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* HERO ART */
+
+        .hero-art {
+            position: relative;
+            height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbit {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border: 1px solid rgba(196,237,138,.15);
+            border-radius: 50%;
+            transform: rotate(-25deg) scaleY(.55);
+        }
+
+        .orbit-two {
+            width: 440px;
+            height: 440px;
+            transform: rotate(35deg) scaleY(.55);
+        }
+
+        .planet {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 32% 25%, #d5f5a2 0%, #8ebd69 13%, #426344 36%, #1c332c 65%, #111b1a 100%);
+            box-shadow:
+                inset -25px -20px 45px rgba(0,0,0,.65),
+                0 0 65px rgba(154,215,112,.13);
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .planet::before {
+            content: "";
+            position: absolute;
+            inset: 20px;
+            border-radius: 50%;
+            background: repeating-linear-gradient(
+                165deg,
+                transparent 0 18px,
+                rgba(15,30,21,.25) 19px 23px
+            );
+            filter: blur(2px);
+        }
+
+        .planet::after {
+            content: "";
+            position: absolute;
+            width: 270px;
+            height: 65px;
+            border: 2px solid rgba(196,237,138,.65);
+            border-radius: 50%;
+            left: -25px;
+            top: 78px;
+            transform: rotate(-24deg);
+            box-shadow: 0 0 18px rgba(196,237,138,.12);
+        }
+
+        .planet-label {
+            position: absolute;
+            bottom: 12px;
+            right: 0;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-18px) rotate(5deg); }
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 105px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 25px;
+            margin-bottom: 45px;
+        }
+
+        .section-number {
+            color: var(--accent);
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(34px, 5vw, 52px);
+            letter-spacing: -2px;
+            font-weight: 500;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 330px;
+            line-height: 1.7;
+        }
+
+        /* CATEGORY CARDS */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .category {
+            min-height: 230px;
+            position: relative;
+            overflow: hidden;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: var(--surface);
+            transition: .3s;
+        }
+
+        .category:hover {
+            border-color: rgba(196,237,138,.55);
+            transform: translateY(-6px);
+            background: var(--surface-light);
+        }
+
+        .category-icon {
+            font-size: 29px;
+            margin-bottom: 45px;
+        }
+
+        .category h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .category p {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .category-arrow {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            color: var(--accent);
+            font-size: 20px;
+            transition: .2s;
+        }
+
+        .category:hover .category-arrow {
+            transform: translate(4px, -4px);
+        }
+
+        /* PROJECTS */
+
+        .projects {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap: 18px;
+        }
+
+        .project {
+            min-height: 360px;
+            position: relative;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+        }
+
+        .project-visual {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 50% 40%, rgba(121,166,90,.35), transparent 60%),
+                linear-gradient(145deg, #252f23, #151a15 75%);
+        }
+
+        .project-visual::before {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 1px solid rgba(196,237,138,.35);
+            left: 50%;
+            top: 35%;
+            transform: translate(-50%, -50%);
+            box-shadow:
+                0 0 0 35px rgba(196,237,138,.025),
+                0 0 0 75px rgba(196,237,138,.025);
+        }
+
+        .project-visual::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            left: 50%;
+            top: 35%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at 30% 25%, #a6d77d, #34523b 60%, #18241c);
+            box-shadow: 0 0 80px rgba(142,196,105,.2);
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 7px 11px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 30px;
+            color: var(--accent);
+            font-size: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .project h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 29px;
+            margin-bottom: 9px;
+        }
+
+        .project p {
+            color: #b7bdb0;
+            font-size: 13px;
+            line-height: 1.7;
+            max-width: 430px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 22px;
+            color: var(--accent);
+            font-size: 12px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .project-small {
+            background:
+                radial-gradient(circle at 70% 25%, rgba(124,100,177,.35), transparent 45%),
+                var(--surface);
+        }
+
+        .project-small .project-visual {
+            background:
+                radial-gradient(ellipse at 70% 25%, rgba(131,106,183,.35), transparent 55%),
+                linear-gradient(145deg, #292333, #17151d);
+        }
+
+        .project-small .project-visual::before {
+            border-color: rgba(184,156,230,.4);
+            width: 190px;
+            height: 190px;
+        }
+
+        .project-small .project-visual::after {
+            width: 125px;
+            height: 125px;
+            background: radial-gradient(circle at 30% 25%, #c6a6eb, #594275 65%, #211c2c);
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-mark {
+            min-height: 260px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 100px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .about-text {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .about-text p + p {
+            margin-top: 20px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 28px;
+        }
+
+        .skill {
+            border: 1px solid var(--border);
+            padding: 9px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            color: #c6cbbf;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 35px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-content span {
+            color: var(--accent);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 75px 0 50px;
+                gap: 15px;
+            }
+
+            .hero-art {
+                height: 330px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-mark {
+                min-height: 190px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: min(100% - 32px, 1160px);
+            }
+
+            header {
+                height: 70px;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                background: #181a17;
+                border-bottom: 1px solid var(--border);
+                padding: 25px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 22px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 75px 0 35px;
+            }
+
+            h1 {
+                font-size: 57px;
+                letter-spacing: -3px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-art {
+                height: 290px;
+            }
+
+            .planet {
+                width: 175px;
+                height: 175px;
+            }
+
+            .planet::after {
+                width: 220px;
+                height: 55px;
+                top: 60px;
+                left: -22px;
+            }
+
+            .orbit {
+                width: 280px;
+                height: 280px;
+            }
+
+            .orbit-two {
+                width: 340px;
+                height: 340px;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+
+            .section-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .category-grid {
+                gap: 10px;
+            }
+
+            .category {
+                min-height: 190px;
+                padding: 18px;
+            }
+
+            .category-icon {
+                margin-bottom: 30px;
+            }
+
+            .project {
+                min-height: 340px;
+                padding: 22px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+        <a href="#" class="logo">KIRILL<span>.</span></a>
+
+        <button class="menu-button" id="menuButton" aria-label="Открыть меню">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#work">Работы</a>
+            <a href="#projects">Проекты</a>
+            <a href="#about">Обо мне</a>
+            <a href="mailto:your-email@example.com" class="nav-contact">Связаться ↗</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- HERO -->
+
+    <div class="container">
+        <section class="hero" style="border: none;">
+            <div>
+                <div class="eyebrow">Творческое пространство</div>
+
+                <h1>
+                    Привет,<br>
+                    я <span>Кирилл.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Создаю миры, персонажей и цифровые вещи.
+                    Исследую 3D, рисование, пиксель-арт и разработку игр.
+                    Здесь собраны мои идеи и эксперименты.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#work" class="button button-primary">Посмотреть работы ↗</a>
+                    <a href="#about" class="button button-secondary">Обо мне</a>
+                </div>
+            </div>
+
+            <div class="hero-art">
+                <div class="orbit"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="planet"></div>
+                <div class="planet-label">A LITTLE UNIVERSE / 001</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- WORK -->
+
+    <section id="work">
+        <div class="container">
+            <div class="section-top">
+                <div>
+                    <div class="section-number">01 / НАПРАВЛЕНИЯ</div>
+                    <h2>Что я создаю</h2>
+                </div>
+
+                <p class="section-description">
+                    Разные способы выражать идеи.
+                    Каждый проект — маленькое исследование.
+                </p>
+            </div>
+
+            <div class="category-grid">
+
+                <a href="art/gallery.html" class="category">
+                    <div class="category-arrow">↗</div>
+                    <div class="category-icon">✳</div>
+                    <h3>Рисунки</h3>
+                    <p>Иллюстрации и пиксель-арт</p>
+                </a>
+
+                <a href="#projects" class="category">
+                    <div class="category-arrow">↗</div>
+                    <div class="category-icon">◇</div>
+                    <h3>3D</h3>
+                    <p>Модели, материалы и миры</p>
+                </a>
+
+                <a href="#projects" class="category">
+                    <div class="category-arrow">↗</div>
+                    <div class="category-icon">⌘</div>
+                    <h3>Игры</h3>
+                    <p>Интерактивные проекты</p>
+                </a>
+
+                <a href="#projects" class="category">
+                    <div class="category-arrow">↗</div>
+                    <div class="category-icon">◎</div>
+                    <h3>Фото</h3>
+                    <p>Моменты и наблюдения</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-top">
+                <div>
+                    <div class="section-number">02 / ИЗБРАННОЕ</div>
+                    <h2>Мои проекты</h2>
+                </div>
+
+                <p class="section-description">
+                    Не просто работы, а идеи, которые постепенно
+                    превращаются во что-то настоящее.
+                </p>
+            </div>
+
+            <div class="projects">
+
+                <article class="project">
+                    <div class="project-visual"></div>
+
+                    <div class="project-content">
+                        <span class="project-tag">GAME DEVELOPMENT</span>
+                        <h3>Мой игровой мир</h3>
+                        <p>
+                            Небольшая игра, в которой я создаю собственную
+                            вселенную, механики и необычных противников.
+                        </p>
+                        <a href="#" class="project-link">Скоро подробнее ↗</a>
+                    </div>
+                </article>
+
+                <article class="project project-small">
+                    <div class="project-visual"></div>
+
+                    <div class="project-content">
+                        <span class="project-tag">DIGITAL ART</span>
+                        <h3>Новые идеи</h3>
+                        <p>
+                            Эксперименты с формой, цветом и визуальным стилем.
+                        </p>
+                        <a href="art/gallery.html" class="project-link">Смотреть рисунки ↗</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+
+                <div>
+                    <div class="section-number">03 / НЕСКОЛЬКО СЛОВ</div>
+                    <h2>Обо мне</h2>
+
+                    <div class="about-mark">K.</div>
+                </div>
+
+                <div>
+                    <div class="about-text">
+                        <p>
+                            Я Кирилл — человек, которому нравится создавать
+                            что-то своими руками. Меня увлекают визуальное
+                            искусство, технологии и возможность превращать
+                            идеи в настоящие проекты.
+                        </p>
+
+                        <p>
+                            Сейчас я развиваюсь в нескольких направлениях:
+                            изучаю 3D, создаю рисунки, экспериментирую
+                            с пиксель-артом и разрабатываю собственные игры.
+                        </p>
+
+                        <p>
+                            Это пространство — мой небольшой творческий архив.
+                            Здесь будут появляться новые работы, эксперименты
+                            и завершённые проекты.
+                        </p>
+                    </div>
+
+                    <div class="skills">
+                        <span class="skill">Blender</span>
+                        <span class="skill">Photoshop</span>
+                        <span class="skill">Godot</span>
+                        <span class="skill">Pixel Art</span>
+                        <span class="skill">3D Art</span>
+                        <span class="skill">Game Development</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <div>© <span id="year"></span> KIRILL. Создано с интересом к творчеству.</div>
+        <div>Сделано с <span>♥</span> и любопытством.</div>
+    </div>
+</footer>
+
+<script>
+    const menuButton = document.getElementById('menuButton');
+    const navLinks = document.getElementById('navLinks');
+
+    menuButton.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+        });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
